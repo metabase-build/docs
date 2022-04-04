@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: readmeio/rdme@vXX
+      - uses: readmeio/rdme@7.0.3
         with:
           rdme: openapi hackathon.json --key=0P3TYz1uvQjo2zMxinAPXQdi949y0NGr --id=624b00fe8c7cc600899fa43f

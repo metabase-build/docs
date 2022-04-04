@@ -1,0 +1,1897 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/v0/auth/register": {
+      "post": {
+        "operationId": "AuthController_localRegister",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authorization"
+        ]
+      }
+    },
+    "/v0/auth/login": {
+      "post": {
+        "operationId": "AuthController_localLogin",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocalLoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authorization"
+        ]
+      }
+    },
+    "/v0/auth/token": {
+      "post": {
+        "operationId": "AuthController_getToken",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authorization"
+        ],
+        "security": [
+          {
+            "refreshToken": []
+          }
+        ]
+      }
+    },
+    "/v0/auth/logout": {
+      "delete": {
+        "operationId": "AuthController_logout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authorization"
+        ]
+      }
+    },
+    "/v0/users/info": {
+      "get": {
+        "operationId": "UserController_userDetail",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserMapper"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/users/projects/{projectId}/api-secret": {
+      "put": {
+        "operationId": "UserController_generateApiSecret",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectApiSecretMapper"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/projects": {
+      "post": {
+        "operationId": "ProjectController_create",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProjectDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ProjectController_findAll",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/projects/{id}": {
+      "get": {
+        "operationId": "ProjectController_findById",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ProjectController_delete",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/projects/{id}/auth/signup": {
+      "post": {
+        "operationId": "AuthPlayerController_signup",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerSignupDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v0/projects/{id}/auth/signup/verify": {
+      "put": {
+        "operationId": "AuthPlayerController_verifyEmail",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerVerifyEmailDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v0/projects/{id}/auth/signup/sign-message": {
+      "put": {
+        "operationId": "AuthPlayerController_getSignupSignMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerSignupSignMessageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v0/projects/{id}/auth/signup/attach": {
+      "put": {
+        "operationId": "AuthPlayerController_attachWallet",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerAttachWalletDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v0/projects/{id}/auth/login/sign-message": {
+      "put": {
+        "operationId": "AuthPlayerController_getLoginSignMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerLoginSignMessageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v0/projects/{id}/auth/login/wallet": {
+      "post": {
+        "operationId": "AuthPlayerController_loginWalletAddress",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerLoginWalletDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v0/projects/{id}/auth/login/email": {
+      "post": {
+        "operationId": "AuthPlayerController_loginEmail",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerLoginEmailDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v0/projects/{id}/player": {
+      "delete": {
+        "operationId": "AuthPlayerController_deletePlayer",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayerSignupSignMessageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v0/projects/{projectId}/players": {
+      "post": {
+        "operationId": "PlayerController_create",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePlayerDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Players"
+        ],
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "refreshToken": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "PlayerController_findAll",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Players"
+        ],
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "refreshToken": []
+          }
+        ]
+      }
+    },
+    "/v0/projects/{projectId}/players/{id}": {
+      "get": {
+        "operationId": "PlayerController_findById",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Players"
+        ],
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "refreshToken": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "PlayerController_delete",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Players"
+        ],
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "refreshToken": []
+          }
+        ]
+      }
+    },
+    "/v0/projects/{projectId}/players/NFTs/all": {
+      "get": {
+        "operationId": "GamePlayerController_findAll",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Players"
+        ],
+        "security": [
+          {
+            "refreshToken": []
+          },
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/NFTs": {
+      "post": {
+        "operationId": "NFTController_create",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateNFTDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NFTs"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "NFTController_findAll",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NFTs"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/NFTs/assign": {
+      "post": {
+        "operationId": "NFTController_assignNFT",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/assignNFTDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NFTs"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/NFTs/transfer": {
+      "post": {
+        "operationId": "NFTController_transferNFT",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/assignNFTDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NFTs"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/NFTs/{id}": {
+      "get": {
+        "operationId": "NFTController_findById",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NFTs"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "NFTController_delete",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NFTs"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/NFTs/owner/{ownerID}": {
+      "get": {
+        "operationId": "NFTController_findByOwner",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ownerID",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NFTs"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/NFTs/project/{projectID}": {
+      "get": {
+        "operationId": "NFTController_findByProject",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectID",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "NFTs"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/projects/{projectId}/templates": {
+      "post": {
+        "operationId": "TemplateController_create",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTemplateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Templates"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "TemplateController_findAll",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Templates"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/projects/{projectId}/templates/{templateId}": {
+      "get": {
+        "operationId": "TemplateController_findById",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "templateId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Templates"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "TemplateController_delete",
+        "parameters": [
+          {
+            "name": "api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "templateId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Templates"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/projects/{projectId}/markets/nfts": {
+      "get": {
+        "operationId": "MarketController_getNfts",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Markets"
+        ]
+      }
+    },
+    "/v0/projects/{projectId}/markets/nfts/{nftId}": {
+      "get": {
+        "operationId": "MarketController_getNftDetails",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nftId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Markets"
+        ]
+      }
+    },
+    "/v0/projects/{projectId}/markets/inventories/nfts": {
+      "get": {
+        "operationId": "MarketController_getInventoryNfts",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Markets"
+        ],
+        "security": [
+          {
+            "refreshToken": []
+          },
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/projects/{projectId}/markets/inventories/nfts/{nftId}": {
+      "get": {
+        "operationId": "MarketController_getInventoryNftDetails",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nftId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Markets"
+        ],
+        "security": [
+          {
+            "refreshToken": []
+          },
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/projects/{projectId}/markets/nfts/{nftId}/sell": {
+      "put": {
+        "operationId": "MarketController_sellNft",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nftId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SellNftDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Markets"
+        ],
+        "security": [
+          {
+            "refreshToken": []
+          },
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v0/projects/{projectId}/markets/nfts/{nftId}/cancel": {
+      "put": {
+        "operationId": "MarketController_cancelSellNft",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nftId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Markets"
+        ],
+        "security": [
+          {
+            "refreshToken": []
+          },
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Metabase build",
+    "description": "Metabase build APIs description",
+    "version": "1",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "RegisterDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "mison201"
+          },
+          "password": {
+            "type": "string",
+            "example": "*******"
+          },
+          "passwordConfirm": {
+            "type": "string",
+            "example": "*******"
+          },
+          "email": {
+            "type": "string",
+            "example": "mison202@gmail.com"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "example": ""
+          }
+        },
+        "required": [
+          "username",
+          "password",
+          "passwordConfirm",
+          "email",
+          "avatarUrl"
+        ]
+      },
+      "LocalLoginDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      },
+      "UserMapper": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "d2fba0c6-1730-4356-9855-ccd3a09c609d"
+          },
+          "email": {
+            "type": "string",
+            "example": "mison202@gmail.com"
+          },
+          "username": {
+            "type": "string",
+            "example": "mison201"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "example": ""
+          },
+          "status": {
+            "type": "string",
+            "example": "active"
+          },
+          "walletAddress": {
+            "type": "string",
+            "example": "15wCQo86JuQjqEim2xADbNYkmGBRCMvpAhRXxL1QSGqfuZCa"
+          },
+          "apiSecret": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "username",
+          "avatarUrl",
+          "status",
+          "walletAddress",
+          "apiSecret"
+        ]
+      },
+      "ProjectApiSecretMapper": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateProjectDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Project name"
+          },
+          "chain": {
+            "type": "string",
+            "example": "starknet"
+          },
+          "description": {
+            "type": "string",
+            "example": "Project desc"
+          },
+          "gameIcon": {
+            "type": "string",
+            "example": "https://www.meme-arsenal.com/memes/1c9bec1c1817f33f756ce195fab4e02f.jpg"
+          }
+        },
+        "required": [
+          "name",
+          "chain",
+          "description",
+          "gameIcon"
+        ]
+      },
+      "PlayerSignupDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "nguyen930411@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          },
+          "isResend": {
+            "type": "boolean",
+            "example": false
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "isResend"
+        ]
+      },
+      "PlayerVerifyEmailDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "nguyen930411@gmail.com"
+          },
+          "token": {
+            "type": "string",
+            "example": "123456"
+          }
+        },
+        "required": [
+          "email",
+          "token"
+        ]
+      },
+      "PlayerSignupSignMessageDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "nguyen930411@gmail.com"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "PlayerAttachWalletDto": {
+        "type": "object",
+        "properties": {
+          "walletAddress": {
+            "type": "string",
+            "example": "0x0abcdef"
+          },
+          "signature": {
+            "type": "string",
+            "example": "xxxxxxx"
+          }
+        },
+        "required": [
+          "walletAddress",
+          "signature"
+        ]
+      },
+      "PlayerLoginSignMessageDto": {
+        "type": "object",
+        "properties": {
+          "walletAddress": {
+            "type": "string",
+            "example": "0x0abcdef"
+          }
+        },
+        "required": [
+          "walletAddress"
+        ]
+      },
+      "PlayerLoginWalletDto": {
+        "type": "object",
+        "properties": {
+          "walletAddress": {
+            "type": "string",
+            "example": "0x0abcdef"
+          },
+          "signature": {
+            "type": "string",
+            "example": "xxxxxxx"
+          }
+        },
+        "required": [
+          "walletAddress",
+          "signature"
+        ]
+      },
+      "PlayerLoginEmailDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "nguyen930411@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "CreatePlayerDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "nguyen930411@gmail.com"
+          },
+          "username": {
+            "type": "string",
+            "example": "nguyen930411"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          },
+          "walletAddress": {
+            "type": "string"
+          },
+          "chain": {
+            "type": "string",
+            "enum": [
+              "starknet",
+              "ethereum",
+              "zksync"
+            ]
+          }
+        },
+        "required": [
+          "email",
+          "username",
+          "password",
+          "walletAddress",
+          "chain"
+        ]
+      },
+      "CreateNFTDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "flappy_box"
+          },
+          "nftType": {
+            "type": "string",
+            "example": "erc721"
+          },
+          "template": {
+            "type": "string",
+            "example": "6246cd8fe908c6628cd776ba"
+          },
+          "project": {
+            "type": "string",
+            "example": "6246d2b287dc5c2fdb6ca89a"
+          },
+          "amount": {
+            "type": "number",
+            "example": "1"
+          },
+          "image": {
+            "type": "string",
+            "description": "image",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "attributes": {
+            "type": "object",
+            "example": [
+              {
+                "name": "prop1",
+                "type": "string",
+                "value": "abc"
+              },
+              {
+                "name": "prop2",
+                "type": "number",
+                "value": 2
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "nftType",
+          "template",
+          "project",
+          "amount",
+          "image",
+          "attributes"
+        ]
+      },
+      "assignNFTDto": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "string",
+            "example": "6246d2b287dc5c2fdb6ca89a"
+          },
+          "nftObjID": {
+            "type": "string",
+            "example": "6246d5e058bc29391b2d24f2"
+          },
+          "assignTo": {
+            "type": "string",
+            "example": "62468442fdd0830300b4fb7b"
+          }
+        },
+        "required": [
+          "project",
+          "nftObjID",
+          "assignTo"
+        ]
+      },
+      "CreateTemplateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Template name"
+          },
+          "description": {
+            "type": "string",
+            "example": "Template desc"
+          },
+          "type": {
+            "type": "string",
+            "example": "NFT"
+          },
+          "capacity": {
+            "type": "string",
+            "example": "Limited"
+          },
+          "quantity": {
+            "type": "number",
+            "example": 1
+          },
+          "image": {
+            "type": "string",
+            "description": "image",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "attributes": {
+            "type": "object",
+            "example": [
+              {
+                "name": "prop1",
+                "type": "string",
+                "value": "abc"
+              },
+              {
+                "name": "prop2",
+                "type": "number",
+                "value": 2
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "type",
+          "capacity",
+          "quantity",
+          "image",
+          "attributes"
+        ]
+      },
+      "SellNftDto": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "number",
+            "example": 0
+          }
+        },
+        "required": [
+          "price"
+        ]
+      }
+    }
+  }
+}

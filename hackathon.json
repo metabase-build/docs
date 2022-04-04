@@ -1,5 +1,8 @@
 {
   "openapi": "3.0.0",
+  "servers": [
+    {"url": "https://devapi.metabase.build"}
+  ],
   "paths": {
     "/v0/auth/register": {
       "post": {
@@ -1470,7 +1473,6 @@
     "contact": {}
   },
   "tags": [],
-  "servers": [],
   "components": {
     "securitySchemes": {
       "bearer": {

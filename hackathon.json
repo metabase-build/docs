@@ -6,6 +6,8 @@
   "paths": {
     "/v0/auth/register": {
       "post": {
+        "description":"Register a new User with required information",
+        "summary": "Register User",
         "operationId": "AuthController_localRegister",
         "parameters": [],
         "requestBody": {
@@ -30,6 +32,8 @@
     },
     "/v0/auth/login": {
       "post": {
+        "description":"Log in user with required username and password",
+        "summary": "Login",
         "operationId": "AuthController_localLogin",
         "parameters": [],
         "requestBody": {
@@ -54,6 +58,8 @@
     },
     "/v0/auth/token": {
       "post": {
+        "description":"Get User Authentication token",
+        "summary": "Authentication Token",
         "operationId": "AuthController_getToken",
         "parameters": [],
         "responses": {
@@ -73,6 +79,8 @@
     },
     "/v0/auth/logout": {
       "delete": {
+        "description":"Log out the current active User in the dashboard",
+        "summary": "Log out",
         "operationId": "AuthController_logout",
         "parameters": [],
         "responses": {
@@ -88,6 +96,8 @@
     "/v0/users/info": {
       "get": {
         "operationId": "UserController_userDetail",
+        "description":"Get User information based on User ID",
+        "summary": "User information",
         "parameters": [
           {
             "name": "api-secret",
@@ -121,6 +131,8 @@
     },
     "/v0/users/projects/{projectId}/api-secret": {
       "put": {
+        "description":"Create API secret key for a Project",
+        "summary": "Create API secret",
         "operationId": "UserController_generateApiSecret",
         "parameters": [
           {
@@ -164,6 +176,8 @@
     "/v0/projects": {
       "post": {
         "operationId": "ProjectController_create",
+        "description":"Create a new Project with required information",
+        "summary": "Create Project",
         "parameters": [
           {
             "name": "api-secret",
@@ -202,6 +216,8 @@
       },
       "get": {
         "operationId": "ProjectController_findAll",
+        "description":"Get a list of created Projects",
+        "summary": "Get Projects",
         "parameters": [
           {
             "name": "api-secret",
@@ -232,6 +248,8 @@
     "/v0/projects/{id}": {
       "get": {
         "operationId": "ProjectController_findById",
+        "description":"Get Project information based on its ID",
+        "summary": "Get Project",
         "parameters": [
           {
             "name": "api-secret",
@@ -268,6 +286,8 @@
       },
       "delete": {
         "operationId": "ProjectController_delete",
+        "description":"Delete Project based on its ID",
+        "summary": "Delete Project",
         "parameters": [
           {
             "name": "api-secret",
@@ -305,6 +325,8 @@
     },
     "/v0/projects/{id}/auth/signup": {
       "post": {
+        "description":"Sign up new Player with required information",
+        "summary": "Sign up",
         "operationId": "AuthPlayerController_signup",
         "parameters": [
           {
@@ -338,6 +360,8 @@
     },
     "/v0/projects/{id}/auth/signup/verify": {
       "put": {
+        "description":"Verify Email for a Player",
+        "summary": "Verify Email",
         "operationId": "AuthPlayerController_verifyEmail",
         "parameters": [
           {
@@ -371,6 +395,8 @@
     },
     "/v0/projects/{id}/auth/signup/sign-message": {
       "put": {
+        "description":"Get Sign Up message for a Player",
+        "summary": "Get sign up message",
         "operationId": "AuthPlayerController_getSignupSignMessage",
         "parameters": [
           {
@@ -404,6 +430,8 @@
     },
     "/v0/projects/{id}/auth/signup/attach": {
       "put": {
+        "description":"Attach wallet address to a Player",
+        "summary": "Attach wallet",
         "operationId": "AuthPlayerController_attachWallet",
         "parameters": [
           {
@@ -437,6 +465,8 @@
     },
     "/v0/projects/{id}/auth/login/sign-message": {
       "put": {
+        "description":"Create login sign message for Players",
+        "summary": "Create sign message",
         "operationId": "AuthPlayerController_getLoginSignMessage",
         "parameters": [
           {
@@ -470,6 +500,8 @@
     },
     "/v0/projects/{id}/auth/login/wallet": {
       "post": {
+        "description":"Authenticate by Wallet address",
+        "summary": "Log in with Wallet",
         "operationId": "AuthPlayerController_loginWalletAddress",
         "parameters": [
           {
@@ -503,6 +535,8 @@
     },
     "/v0/projects/{id}/auth/login/email": {
       "post": {
+        "description":"Authenticate by Email",
+        "summary": "Log in with Email",
         "operationId": "AuthPlayerController_loginEmail",
         "parameters": [
           {
@@ -536,6 +570,8 @@
     },
     "/v0/projects/{id}/player": {
       "delete": {
+        "description":"Delete a Player based on Player ID",
+        "summary": "Delete Player",
         "operationId": "AuthPlayerController_deletePlayer",
         "parameters": [
           {
@@ -570,6 +606,8 @@
     "/v0/projects/{projectId}/players": {
       "post": {
         "operationId": "PlayerController_create",
+        "description":"Create a new Player in a Project",
+        "summary": "Create a Player",
         "parameters": [
           {
             "name": "api-secret",
@@ -616,6 +654,8 @@
       },
       "get": {
         "operationId": "PlayerController_findAll",
+        "description":"Get all Players in a Project based on a Project ID",
+        "summary": "Get Players",
         "parameters": [
           {
             "name": "api-secret",
@@ -653,6 +693,8 @@
     },
     "/v0/projects/{projectId}/players/{id}": {
       "get": {
+        "description":"Get player information based on player ID",
+        "summary": "Get Player",
         "operationId": "PlayerController_findById",
         "parameters": [
           {
@@ -698,6 +740,8 @@
       },
       "delete": {
         "operationId": "PlayerController_delete",
+        "description":"Delete a Player based on Player ID",
+        "summary": "Delete player",
         "parameters": [
           {
             "name": "api-secret",
@@ -744,6 +788,8 @@
     "/v0/projects/{projectId}/players/NFTs/all": {
       "get": {
         "operationId": "GamePlayerController_findAll",
+        "description":"Cancel the NFT sell base on the NFT ID of a project",
+        "summary": "Cancel NFT sell",
         "parameters": [
           {
             "name": "projectId",
@@ -775,6 +821,8 @@
     "/v0/NFTs": {
       "post": {
         "operationId": "NFTController_create",
+        "description":"Create NFT based on a NFT template ID",
+        "summary": "Create NFT",
         "parameters": [
           {
             "name": "api-secret",
@@ -816,6 +864,8 @@
       },
       "get": {
         "operationId": "NFTController_findAll",
+        "description":"Get all NFTs",
+        "summary": "Get NFTs",
         "parameters": [
           {
             "name": "api-secret",
@@ -846,6 +896,8 @@
     "/v0/NFTs/assign": {
       "post": {
         "operationId": "NFTController_assignNFT",
+        "description":"Cancel the NFT sell base on the NFT ID of a project",
+        "summary": "Assign NFT",
         "parameters": [
           {
             "name": "api-secret",
@@ -887,6 +939,8 @@
       }
     },
     "/v0/NFTs/transfer": {
+      "description":"Cancel the NFT sell base on the NFT ID of a project",
+      "summary": "Transfer NFT",
       "post": {
         "operationId": "NFTController_transferNFT",
         "parameters": [
@@ -932,6 +986,8 @@
     "/v0/NFTs/{id}": {
       "get": {
         "operationId": "NFTController_findById",
+        "description":"Get NFT information based on its ID",
+        "summary": "Get NFT",
         "parameters": [
           {
             "name": "api-secret",
@@ -968,6 +1024,8 @@
       },
       "delete": {
         "operationId": "NFTController_delete",
+        "description":"Delete a NFT based on its ID",
+        "summary": "Delete NFT",
         "parameters": [
           {
             "name": "api-secret",
@@ -1006,6 +1064,8 @@
     "/v0/NFTs/owner/{ownerID}": {
       "get": {
         "operationId": "NFTController_findByOwner",
+        "description":"Get a list of NFTs based on an owner ID",
+        "summary": "Get NFT by owner",
         "parameters": [
           {
             "name": "api-secret",
@@ -1044,6 +1104,8 @@
     "/v0/NFTs/project/{projectID}": {
       "get": {
         "operationId": "NFTController_findByProject",
+        "description":"Get a Project information based on its ID",
+        "summary": "Get Project Information",
         "parameters": [
           {
             "name": "api-secret",
@@ -1082,6 +1144,8 @@
     "/v0/projects/{projectId}/templates": {
       "post": {
         "operationId": "TemplateController_create",
+        "description":"Create a NFT template with required template information",
+        "summary": "Create NFT template",
         "parameters": [
           {
             "name": "api-secret",
@@ -1128,6 +1192,8 @@
       },
       "get": {
         "operationId": "TemplateController_findAll",
+        "description":"Get a list of all NFT template in a project",
+        "summary": "Get all NFT templates",
         "parameters": [
           {
             "name": "api-secret",
@@ -1166,6 +1232,8 @@
     "/v0/projects/{projectId}/templates/{templateId}": {
       "get": {
         "operationId": "TemplateController_findById",
+        "description":"Get a NFT template based on its template ID",
+        "summary": "Get NFT template",
         "parameters": [
           {
             "name": "api-secret",
@@ -1210,6 +1278,8 @@
       },
       "delete": {
         "operationId": "TemplateController_delete",
+        "description":"Remove a NFT template based on its ID in a project",
+        "summary": "Remove NFT template",
         "parameters": [
           {
             "name": "api-secret",
@@ -1256,6 +1326,8 @@
     "/v0/projects/{projectId}/markets/nfts": {
       "get": {
         "operationId": "MarketController_getNfts",
+        "description":"Get a list of NFTs in a project",
+        "summary": "NFT list in Project",
         "parameters": [
           {
             "name": "projectId",
@@ -1279,6 +1351,8 @@
     "/v0/projects/{projectId}/markets/nfts/{nftId}": {
       "get": {
         "operationId": "MarketController_getNftDetails",
+        "description":"Get detail of the NFT based on a NFT ID of a project",
+        "summary": "Get NFT detail",
         "parameters": [
           {
             "name": "projectId",
@@ -1310,6 +1384,8 @@
     "/v0/projects/{projectId}/markets/inventories/nfts": {
       "get": {
         "operationId": "MarketController_getInventoryNfts",
+        "description":"Get a list of NFT inventory in a project",
+        "summary": "Get NFT inventory",
         "parameters": [
           {
             "name": "projectId",
@@ -1341,6 +1417,8 @@
     "/v0/projects/{projectId}/markets/inventories/nfts/{nftId}": {
       "get": {
         "operationId": "MarketController_getInventoryNftDetails",
+        "description":"Get a NFT inventory detail based on the NFT ID of a project",
+        "summary": "NFT inventory detail",
         "parameters": [
           {
             "name": "projectId",
@@ -1380,6 +1458,8 @@
     "/v0/projects/{projectId}/markets/nfts/{nftId}/sell": {
       "put": {
         "operationId": "MarketController_sellNft",
+        "description":"Sell a NFT based on the NFT ID of a project",
+        "summary": "Sell a NFT",
         "parameters": [
           {
             "name": "projectId",
@@ -1429,11 +1509,13 @@
     "/v0/projects/{projectId}/markets/nfts/{nftId}/cancel": {
       "put": {
         "operationId": "MarketController_cancelSellNft",
+        "description":"Cancel the NFT sell based on the NFT ID of a project",
+        "summary": "Cancel NFT sell",
         "parameters": [
           {
             "name": "projectId",
             "required": true,
-            "in": "path",
+            "in": "path",     
             "schema": {
               "type": "string"
             }
@@ -1467,8 +1549,8 @@
     }
   },
   "info": {
-    "title": "Metabase build",
-    "description": "Metabase build APIs description",
+    "title": "Metabase API",
+    "description": "Metabase build APIs documentation",
     "version": "1",
     "contact": {}
   },

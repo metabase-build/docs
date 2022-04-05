@@ -788,8 +788,8 @@
     "/v0/projects/{projectId}/players/NFTs/all": {
       "get": {
         "operationId": "GamePlayerController_findAll",
-        "description":"Cancel the NFT sell base on the NFT ID of a project",
-        "summary": "Cancel NFT sell",
+        "description":"Get all existing NFTs in a Project based on provided Project ID",
+        "summary": "Get Project's NFTs",
         "parameters": [
           {
             "name": "projectId",
@@ -939,10 +939,10 @@
       }
     },
     "/v0/NFTs/transfer": {
-      "description":"Cancel the NFT sell base on the NFT ID of a project",
-      "summary": "Transfer NFT",
       "post": {
         "operationId": "NFTController_transferNFT",
+        "description":"Cancel the NFT sell base on the NFT ID of a project",
+        "summary": "Transfer NFT",
         "parameters": [
           {
             "name": "api-secret",
